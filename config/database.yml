@@ -8,12 +8,12 @@ default: &default
 
 development:
   <<: *default
-  database: cardcheck_development
+  database: cardchecker_development
 
 test:
   <<: *default
-  database: cardcheck_test
+  database: cardchecker_test
 
 production:
   <<: *default
-  database: cardcheck_production
+  database: cardchecker_production
