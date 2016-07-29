@@ -5,12 +5,12 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
+    @code_error = @card.num(card_params[:number])
+    @card_type = @card.type(card_params[:number])
     if @card.save
-      flash[:notice] = 'Your card number is valid'
-      redirect_to :new_card
+      render :show
     else
-      flash[:notice] = 'Your card number is not valid'
-    render :new
+      render :new
     end
   end
 

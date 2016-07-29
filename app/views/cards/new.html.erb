@@ -1,25 +1,25 @@
-
-<h1>Card checkrer !</h1>
+<h1>Card checker !</h1>
 
 <div>
   <%= form_for @card do |f| %>
     <% if @card.errors.any? %>
-    <div id="error_explanation">
-            <h2><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h2>
+      <div id="error_explanation">
+        <h2><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h2>
 
-            <ul>
-              <% @card.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-              </ul>
-        </div>
-  <% end %>
+        <ul>
+          <% @card.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-  <%= f.label :number %><br>
-  <%= f.text_field :number, requred: true %>
+    <%= f.label :number %><br><br>
+    <%= f.text_field :number, requred: true %>
 
-  <br>
+    <br>
+    <br>
 
-  <%= f.submit 'Check card number' %>
+    <%= f.submit 'Check card number' %>
   <% end %>
 </div>
