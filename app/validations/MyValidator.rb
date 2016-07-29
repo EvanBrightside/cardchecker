@@ -1,6 +1,4 @@
-class Card < ActiveRecord::Base
-  validates :number,  presence: true, length: { minimum: 15 }, numericality: { only_integer: true }
-
+class MyValidator < ActiveModel::Validator
   def type(s)
     case s.gsub(/\D/,'')
     when /^(?=34).{15}$/; "AMEX"
@@ -12,8 +10,14 @@ class Card < ActiveRecord::Base
     end
   end
 
-  def num(s)
+  def validate(s)
     s.scan(/\d/).inject([0,0]){|(a,b),c|[b+c.to_i,
     a+c.to_i*2%9+(c=='9' ? 9 : 0)]}[0]%10 == 0
   end
+
+  s = ARGV.join
 end
+
+
+#  s = ARGV.join
+#  puts "#{type(s)} #{validate(s)?'V':'Inv'}alid"
