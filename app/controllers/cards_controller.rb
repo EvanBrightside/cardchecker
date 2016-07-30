@@ -5,7 +5,7 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
-    @code_error = @card.num(card_params[:number])
+    @card_valid = @card.algorithm(card_params[:number])
     @card_type = @card.type(card_params[:number])
     if @card.save
       render :show
