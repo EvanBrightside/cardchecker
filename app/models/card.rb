@@ -1,5 +1,5 @@
 class Card < ActiveRecord::Base
-  validates :number,  presence: true, length: { minimum: 15 }, numericality: { only_integer: true }
+  validates :number,  presence: true, length: { minimum: 13 }, numericality: { only_integer: true }
 
   def type(num)
     case num.gsub(/\D/,'')
