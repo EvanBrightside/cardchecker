@@ -1,12 +1,23 @@
-<h1>Card checker !</h1>
-<div>
-  <% if @card_valid %>
-    Type of your card is "<%= @card_type %>" and it's valid
-  <% else %>
-    Type of your card is "<%= @card_type %>" and it's invalid
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4" style="padding: 0px 3.8%;">
+      <h1 class="text-center">Card checker!</h1>
 
-  <br><br>
+      <div>
 
-  <%= link_to "Check it again?", root_path %>
+        <% if @card_valid %>
+        <label class="col-md-12 text-center">Type of your card is "<%= @card_type %>" and it's valid</label>
+        <% else %>
+        <label class="col-md-12 text-center">Type of your card is "<%= @card_type %>" and it's invalid</label>
+        <% end %>
+
+        <br>
+        <br>
+
+        <%= link_to root_path, class: "btn btn-primary btn-block" do %>
+            <i class="icon-ok icon-white"></i>Check it again?
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
