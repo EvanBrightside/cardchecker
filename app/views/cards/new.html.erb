@@ -1,25 +1,32 @@
-<h1>Card checker !</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4" style="padding: 0px 3.8%;">
+      <h1 class="text-center">Card checker!</h1>
 
-<div>
-  <%= form_for @card do |f| %>
-    <% if @card.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h2>
+      <div>
+        <%= form_for @card do |f| %>
+        <% if @card.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h2>
 
-        <ul>
-          <% @card.errors.full_messages.each do |message| %>
+          <ul>
+            <% @card.errors.full_messages.each do |message| %>
             <li><%= message %></li>
-          <% end %>
-        </ul>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <br>
+        <label class="col-md-offset-2">Enter your card number</label>
+        <br>
+        <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
+          <%= f.text_field :number, placeholder: "5276015510856302", requred: true, size: 20, class: 'form-control' %>
+        </div>
+        <br>
+        <%= f.submit 'Check card number', :class=> "btn btn-primary btn-block" %>
+        <% end %>
       </div>
-    <% end %>
-
-    <%= f.label :number %><br><br>
-    <%= f.text_field :number, requred: true %>
-
-    <br>
-    <br>
-
-    <%= f.submit 'Check card number' %>
-  <% end %>
+    </div>
+  </div>
 </div>
