@@ -1,25 +1,30 @@
 class Card < ActiveRecord::Base
-  validates :number,  presence: true, length: { minimum: 13 }, numericality: { only_integer: true }
+  validates :number, presence: true, length: { minimum: 13 },
+                     format: { with: /[\d+\s]/, message: 'can only contain numbers.' }
 
-  def type(num)
-    case num.gsub(/\D/,'')
-    when /^(?=34).{15}$/; "AMEX"
-    when /^(?=37).{15}$/; "AMEX"
-    when /^(?=6011).{16}$/; "Discover"
-    when /^(?=5[1-5]).{16}$/; "MasterCard"
-    when /^(?=4).{13}(...)?$/; "Visa"
-    else ; "Unknown"
+  def type(card_pan)
+    case card_pan.gsub(/\D/, '')
+    when /^(?=34).{15}$/, /^(?=37).{15}$/
+      'AMEX'
+    when /^(?=6011).{16}$/
+      'Discover'
+    when /^(?=5[1-5]).{16}$/
+      'MasterCard'
+    when /^(?=4).{13}(...)?$/
+      'Visa'
+    else
+      'Unknown'
     end
   end
 
-  def algorithm(num)
-    parity = num.length % 2
+  def algorithm(card_pan)
+    parity = card_pan.length % 2
     sum = 0
-    num.split('').each_with_index do |c, i|
+    card_pan.split('').each_with_index do |c, i|
       digit = c.to_i
       digit = (digit * 2) % 9 if i % 2 == parity
       sum += digit
     end
-    return (sum % 10) == 0
+    (sum % 10).zero?
   end
 end
