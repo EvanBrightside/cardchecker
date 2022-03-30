@@ -4,7 +4,7 @@ ruby '3.0.1'
 gem 'rails', '~>6.1.1'
 
 gem 'pg'
-gem 'puma', '~> 5.2'
+gem 'puma', '~> 5.6'
 
 gem 'bootstrap-sass'
 gem 'coffee-rails'
